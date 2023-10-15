@@ -1,0 +1,1 @@
+--> Run f1.py for sensor calibration and to send the data to the thingspeak.
