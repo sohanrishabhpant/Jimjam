@@ -1,0 +1,8 @@
+CHANNEL_ID = "1848369"
+WRITE_API_KEY = "P3RYOEFOD90DB9FY"
+READ_API_KEY = "5Y175EF80D2KQ470"
+
+
+R_PIN = 11  # Physical Pin 11
+G_PIN = 13  # Physical Pin 13
+B_PIN = 15  # Physical Pin 15
