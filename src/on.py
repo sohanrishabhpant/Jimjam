@@ -5,7 +5,7 @@ import urllib.request
 
 R_PIN = 11  # Physical Pin 11
 G_PIN = 13  # Physical Pin 13
-B_PIN = 15  # Physical Pin 15
+B_PIN = 17  # Physical Pin 15
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
