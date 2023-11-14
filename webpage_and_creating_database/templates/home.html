@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>Home</title>
-<style>
-  body {
-    background-image: url('../static/i.png');
-    background-repeat: no-repeat;
-    background-size: cover; 
-  }
-   footer {
+  <title>Home</title>
+  <style>
+    body {
+      background-image: url('../static/i.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    footer {
       background-color: black;
       color: white;
       text-align: center;
       width: 100%;
       bottom: 0;
       position: fixed;
-     
+
     }
 
     /* Style for the footer content */
@@ -25,23 +27,86 @@
       align-items: center;
       height: 100%;
     }
+
     .footer-content a {
-      color: white; 
+      color: white;
       text-decoration: none;
       margin: 0 10px;
     }
+
     .centered-content {
-  text-align: center;
-}
-</style>
+      text-align: center;
+    }
+
+    .toggle-btn {
+      display: inline-block;
+      background-color: #ccc;
+      border: 1px solid #777;
+      color: #000;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+
+    .toggle-btn.active {
+      background-color: #101110;
+      color: white;
+    }
+  </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Radius vs. Time</title>
+
 </head>
+
 <body>
-  <h1 style="margin-left: 41%;">Radius vs. Time</h1>
-  <img src="data:image/png;base64,{{ image }}" style="margin-left: 21%;margin-top: 3%;" alt="Radius vs. Time" width="1000" height="600">
+
+
+  <h1 style="text-align: center;"> LEDS </h1>
+  <label for="red" style="margin-left: 7%;">Red LED:</label>
+  <button type="button" class="toggle-btn" id="R_btn" onclick="toggleLED('R')">Toggle Red LED</button>
+  Intensity:
+  <input type="range" name="R_intensity" min="0" max="100" value="{{ R_intensity }}">
+
+  <label for="green" style="margin-left: 10%;">Green LED:</label>
+  <button type="button" class="toggle-btn" id="G_btn" onclick="toggleLED('G')">Toggle Green LED</button>
+  Intensity:
+  <input type="range" name="G_intensity" min="0" max="100" value="{{ G_intensity }}">
+
+  <label for="blue" style="margin-left: 13%;">Blue LED:</label>
+  <button type="button" class="toggle-btn" id="B_btn" onclick="toggleLED('B')">Toggle Blue LED</button>
+  Intensity:
+  <input type="range" name="B_intensity" min="0" max="100" value="{{ B_intensity }}">
+  <br><br><br>
+
+  <input type="submit" value="Apply Changes" style="margin-left: 45%; height: 40px ;">
+  <script>
+    function toggleLED(led) {
+      var btn = document.getElementById(led + "_btn");
+      var checkbox = document.getElementById(led + "_checkbox");
+
+      // Toggle the active class
+      btn.classList.toggle("active");
+
+      // Toggle the checkbox state
+      checkbox.checked = !checkbox.checked;
+    }
+  </script>
+
+  <h1 style="text-align: center;">Radius vs. Time</h1>
+  <img src="data:image/png;base64,{{ image }}" style="margin-left: 21%;margin-top: 3%;" alt="Radius vs. Time"
+    width="1000" height="600">
+  <h2 style="margin-left: 48%;margin-top:5%;color:red">RED</h2>
+  <img src="data:image/png;base64,{{ image }}" style="margin-left: 21%;margin-top: 3%;" alt="Radius vs. Time"
+    width="1000" height="600">
+
+  <h2 style="margin-left: 48%;color: green;">GREEN</h2>
+  <img src="data:image/png;base64,{{ image }}" style="margin-left: 21%;margin-top: 3%;" alt="Radius vs. Time"
+    width="1000" height="600">
+
+  <h2 style="margin-left: 48%;color: blue;">BLUE</h2>
+  <img src="data:image/png;base64,{{ image }}" style="margin-left: 21%;margin-top: 3%;margin-bottom: 5%"
+    alt="Radius vs. Time" width="1000" height="600">
 
 </body>
-</html>
 
+</html>
