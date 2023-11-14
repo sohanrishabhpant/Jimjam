@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import requests
 
 # ThingSpeak parameters
-API_KEY = 'VBW8G1SZZK98R4HF'  # Replace with your ThingSpeak API Key
-CHANNEL_ID = '2267674'  # Replace with your ThingSpeak Channel ID
+API_KEY = '641RRMID5TZZ7Z5A'  # Replace with your ThingSpeak  WRITE API Key
+CHANNEL_ID = '2151471'  # Replace with your ThingSpeak Channel ID
 FIELD_ID = 1  # Field 1 for radius
 
 # Create a VideoCapture object
