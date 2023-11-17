@@ -3,7 +3,6 @@
 
 <head>
   <title>Home</title>
-
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LED Control</title>
@@ -17,7 +16,6 @@
       margin: 0;
       padding: 0;	
     }
-
     footer {
       background-color: black;
       color: white;
@@ -27,7 +25,6 @@
       position: fixed;
 
     }
-
     /* Style for the footer content */
     .footer-content {
       display: flex;
@@ -35,13 +32,11 @@
       align-items: center;
       height: 100%;
     }
-
     .footer-content a {
       color: white;
       text-decoration: none;
       margin: 0 10px;
     }
-
     .centered-content {
       text-align: center;
     }
@@ -53,12 +48,10 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
         h1 {
             text-align: center;
             color: #333;
         }
-
         button {
             display: block;
             width: 100%;
@@ -72,11 +65,9 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-
         button:hover {
             background-color: #45a049;
         }
-
         input {
             width: 100%;
             padding: 10px;
@@ -84,7 +75,6 @@
             font-size: 16px;
             border-radius: 5px;
         }
-
   </style>
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
@@ -98,13 +88,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Radius vs. Time</title>
-
 </head>
 
 <body>
-
-
-
     <div class="container">
         <h1>LED Control</h1>
         <label for="intensity">Intensity (0-100): </label>
@@ -116,13 +102,7 @@
         <button onclick="updateColor('w')">White</button>
         <button onclick="updateColor('off')">Turn Off</button>
     </div>
-
-
   <h1 style="text-align: center;">Radius vs. Time</h1>
-  <img src="data:image/png;base64,{{ image }}" style="margin-left: 21%;margin-top: 3%;" alt="Radius vs. Time"
-    width="1000" height="600">
-
-
 </body>
 
 </html>
