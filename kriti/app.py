@@ -15,40 +15,51 @@ GPIO.setup(R_PIN, GPIO.OUT)
 GPIO.setup(G_PIN, GPIO.OUT)
 GPIO.setup(B_PIN, GPIO.OUT)
 
-def turn_on_color(color):
+# Create PWM objects for each pin
+RED_PWM = GPIO.PWM(R_PIN, 100)  # 100 Hz frequency
+GREEN_PWM = GPIO.PWM(G_PIN, 100)
+BLUE_PWM = GPIO.PWM(B_PIN, 100)
+
+def turn_on_color(color, intensity):
+    # Map intensity from the range [0, 100] to [0, 100] (adjust as needed)
+    intensity = max(0, min(100, 100-int(intensity)))
+
+    # Calculate the duty cycle based on the intensity
+    duty_cycle = intensity
+
     if color == "r":
-        GPIO.output(R_PIN, 0)
-        GPIO.output(G_PIN, 1)
-        GPIO.output(B_PIN, 1)
+        RED_PWM.start(duty_cycle)
+        GREEN_PWM.start(100)
+        BLUE_PWM.start(100)
     elif color == "g":
-        GPIO.output(R_PIN, 1)
-        GPIO.output(G_PIN, 0)
-        GPIO.output(B_PIN, 1)
+        RED_PWM.start(100)
+        GREEN_PWM.start(duty_cycle)
+        BLUE_PWM.start(100)
     elif color == "b":
-        GPIO.output(R_PIN, 1)
-        GPIO.output(G_PIN, 1)
-        GPIO.output(B_PIN, 0)
+        RED_PWM.start(100)
+        GREEN_PWM.start(100)
+        BLUE_PWM.start(duty_cycle)
     elif color == "y":
-        GPIO.output(R_PIN, 0)
-        GPIO.output(G_PIN, 0)
-        GPIO.output(B_PIN, 1)
+        RED_PWM.start(duty_cycle)
+        GREEN_PWM.start(duty_cycle)
+        BLUE_PWM.start(100)
     elif color == "w":
-        GPIO.output(R_PIN, 0)
-        GPIO.output(G_PIN, 0)
-        GPIO.output(B_PIN, 0)
+        RED_PWM.start(duty_cycle)
+        GREEN_PWM.start(duty_cycle)
+        BLUE_PWM.start(duty_cycle)
     elif color == "off":
-        GPIO.output(R_PIN, 1)
-        GPIO.output(G_PIN, 1)
-        GPIO.output(B_PIN, 1)
+        RED_PWM.start(100)
+        GREEN_PWM.start(100)
+        BLUE_PWM.start(100)
 
 @app.route("/")
 def index():
     return render_template("home.html")
 
-@app.route("/control/<color>")
-def control(color):
-    turn_on_color(color)
-    return f"Turning on {color} LED"
+@app.route("/control/<color>/<intensity>")
+def control(color, intensity):
+    turn_on_color(color, intensity)
+    return f"Turning on {color} LED with intensity {intensity}"
 
 if __name__ == "__main__":
     app.run(debug=True)
