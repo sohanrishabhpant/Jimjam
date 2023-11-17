@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home</title>
+
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LED Control</title>
+  <style>
+    body {
+      background-image: url('../static/i.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;	
+    }
+
+    footer {
+      background-color: black;
+      color: white;
+      text-align: center;
+      width: 100%;
+      bottom: 0;
+      position: fixed;
+
+    }
+
+    /* Style for the footer content */
+    .footer-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .footer-content a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .centered-content {
+      text-align: center;
+    }
+.container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+  </style>
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        function updateColor(color) {
+            var intensity = document.getElementById("intensity").value;
+            $.get(`/control/${color}/${intensity}`, function (data) {
+                alert(data); // Display a message (you can customize this)
+            });
+        }
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radius vs. Time</title>
+
+</head>
+
+<body>
+
+
+
+    <div class="container">
+        <h1>LED Control</h1>
+        <label for="intensity">Intensity (0-100): </label>
+        <input type="number" id="intensity" name="intensity" min="0" max="100" value="100">
+        <button onclick="updateColor('r')">Red</button>
+        <button onclick="updateColor('g')">Green</button>
+        <button onclick="updateColor('b')">Blue</button>
+        <button onclick="updateColor('y')">Yellow</button>
+        <button onclick="updateColor('w')">White</button>
+        <button onclick="updateColor('off')">Turn Off</button>
+    </div>
+
+
+  <h1 style="text-align: center;">Radius vs. Time</h1>
+  <img src="data:image/png;base64,{{ image }}" style="margin-left: 21%;margin-top: 3%;" alt="Radius vs. Time"
+    width="1000" height="600">
+
+
+</body>
+
+</html>
