@@ -1,3 +1,3 @@
 ### Jimjam
 ## WEBPAGE : new
-## CALIBRATION : 
+## CALIBRATION : calibration_sending_data_to_thingspeak
