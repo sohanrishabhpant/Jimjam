@@ -1,1 +1,0 @@
--->Run app.py for the webpage, a led control panel and graph image will be displayed on the localhost.
