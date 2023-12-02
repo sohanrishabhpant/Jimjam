@@ -1,11 +1,11 @@
-import cv2
+port cv2
 import time
 import numpy as np
 import matplotlib.pyplot as plt
 import requests
 
 # ThingSpeak parameters
-API_KEY = '641RRMID5TZZ7Z5A'  # Replace with your ThingSpeak  WRITE API Key
+API_KEY = '641RRMID5TZZ7Z5A'  # Replace with your ThingSpeak API Key
 CHANNEL_ID = '2151471'  # Replace with your ThingSpeak Channel ID
 FIELD_ID = 1  # Field 1 for radius
 
@@ -14,7 +14,7 @@ cap = cv2.VideoCapture(0)
 print("started")
 # Define the codec and create a VideoWriter object
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter('output.avi', fourcc, 20.0, (640, 480))
+out = cv2.VideoWriter('output.avi', fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))
 
 # Initialize the arrays to store data
 times = []
@@ -22,10 +22,17 @@ radii = []
 
 # Capture the video for 10 seconds and store the frames in an array
 frames = []
-while len(frames) <= 300:
+while len(frames) <= 200:
+
     ret, frame = cap.read()
+
+    if not ret:
+        print("frame not captured")
+
     frames.append(frame)
-    # Release the resources
+    print(frame)
+    
+     # Release the resources
 cap.release()
 
 # Get the start time
@@ -34,6 +41,7 @@ start_time = time.time()
 # Process the frames and store the radii in an array
 for i in range(len(frames)):
     frame = frames[i]
+    
     # Convert the image to grayscale
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -43,8 +51,10 @@ for i in range(len(frames)):
     # Detect the eye region using a cascade classifier
     eye_cascade = cv2.CascadeClassifier('./haarcascade_eye.xml')
     eyes = eye_cascade.detectMultiScale(gray_blur, 1.3, 5)
-
+    print(eyes)
+    
     if len(eyes) == 0:
+        out.write(frame)
         continue
 
     # Get the eye region and calculate the radius of the pupil
@@ -57,6 +67,7 @@ for i in range(len(frames)):
         # Find the contours of the thresholded image
         contours, _ = cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
+  #      print(contours)
         # Find the contour with the largest area, which corresponds to the pupil
         if len(contours) > 0:
             pupil_contour = max(contours, key=cv2.contourArea)
