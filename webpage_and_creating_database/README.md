@@ -1,2 +1,2 @@
--->Run app2.py to send data from thingspeak to database.db
--->Now run app.py for the webpage, a graph image will be displayed on the localhost.
+-->Run thingspeak_to_database.py to send data from thingspeak to database.db
+-->Now run app.py for the webpage, a led control will be displayed on the localhost.
